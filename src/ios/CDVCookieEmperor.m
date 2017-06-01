@@ -54,7 +54,7 @@
  
         if (cookies != nil)
         {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:cookies];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsMultipart:cookies];
         }
         else
         {
