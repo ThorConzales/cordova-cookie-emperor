@@ -64,7 +64,7 @@
      
         if (cookies != nil)
         {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"cookieValue":cookieValue}];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"cookieValues":cookieValue}];
         }
         else
         {
