@@ -17,11 +17,11 @@
         [cookies enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSHTTPCookie *cookie = obj;
 
-            /*if([cookie.name isEqualToString:cookieName])
-            {*/
+            if([cookie.name isEqualToString:cookieName])
+            {
                 cookieValue = cookie.value;
                 *stop = YES;
-            /*}*/
+            }
         }];
 
         if (cookieValue != nil)
@@ -62,7 +62,7 @@
 
         }];
      
-        if (cookies != nil)
+        if (cookieValue != nil)
         {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"cookieValues":cookieValue}];
         }
