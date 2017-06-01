@@ -51,10 +51,20 @@
     if (urlString != nil)
     {
         NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:urlString]];
- 
+        __block NSString *cookieValue = @"";
+        
+       [cookies enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSHTTPCookie *cookie = obj;
+            cookieValue = [cookieValue stringByAppendingString:cookie.name];
+            cookieValue = [cookieValue stringByAppendingString:@"="];
+            cookieValue = [cookieValue stringByAppendingString:cookie.value];
+            cookieValue = [cookieValue stringByAppendingString:@"; "];
+
+        }];
+     
         if (cookies != nil)
         {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Cookie is found"];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"cookieValue":cookieValue}];
         }
         else
         {
